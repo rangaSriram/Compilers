@@ -1,0 +1,12 @@
+<<driver Program>>
+start
+    declare num, k:integer;
+    declare A:array [1..10] of integer; **88asjdgjagshh
+    num:=5.45E+asd;
+    for( k in 1..10)
+    start
+        A[k]:=(num-k)*(num-k);
+        print(A[k]);
+        num:=32.5E?
+    end
+end
