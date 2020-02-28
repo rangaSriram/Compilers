@@ -58,9 +58,22 @@ void uncommentedPrint(FILE * ptr){
         if(c=='*'){
             c = fgetc(ptr);
             if(c =='*'){
+                int count  = 0;
                 c = fgetc(ptr);
-                while(c!='\n'){
-                    c = fgetc(ptr);
+                while(count!=2){
+                    if(c=='*'){
+                        count = 1;
+                        c = fgetc(ptr);
+                        if(c=='*'){
+                            count = 2;
+                        }
+                        else{
+                            count = 0;
+                        }
+                    }
+                    if(count!=2){
+                        c = fgetc(ptr);
+                    }
                 }
                 c = fgetc(ptr);
             }

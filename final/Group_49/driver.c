@@ -11,6 +11,8 @@
 
 int main(int argc, char * argv[]){
     int i = 1;
+    lexerInitialize();
+    parserInitialize();
     while(i!=0){
         printf("\n\nPlease select an option:\n");
         printf("0 - to exit the program\n");
@@ -30,14 +32,12 @@ int main(int argc, char * argv[]){
             uncommentedPrint(ptr);
         }
         else if(i==2){
-            lexerInitialize();
-            parserInitialize();
             bp.index = 0;
             bp.arrNum = 0;
             fp.index = 0;
             fp.arrNum = 0;
             lineNo = 1;
-            start = fopen("text.txt", "r");
+            start = fopen(argv[1], "r");
             file = start;
             for(int i = 0; i<20; i++){                  //filling buffer only row 0
                 buff[0][i] = fgetc(file);
@@ -54,14 +54,12 @@ int main(int argc, char * argv[]){
             }
         }
         else if(i==3){
-            lexerInitialize();
-            parserInitialize();
             bp.index = 0;
             bp.arrNum = 0;
             fp.index = 0;
             fp.arrNum = 0;
             lineNo = 1;
-            start = fopen("testcase.txt", "r");
+            start = fopen(argv[1], "r");
             file = start;
             for(int i = 0; i<20; i++){                  //filling buffer only row 0
                 buff[0][i] = fgetc(file);
@@ -107,16 +105,12 @@ int main(int argc, char * argv[]){
             double total_CPU_time, total_CPU_time_in_seconds;
 
             start_time = clock();
-
-                lexerInitialize();
-                parserInitialize();
-
                 bp.index = 0;
                 bp.arrNum = 0;
                 fp.index = 0;
                 fp.arrNum = 0;
                 lineNo = 1;
-                start = fopen("text.txt", "r");
+                start = fopen(argv[1], "r");
                 file = start;
                 for(int i = 0; i<20; i++){                  //filling buffer only row 0
                     buff[0][i] = fgetc(file);
@@ -126,7 +120,7 @@ int main(int argc, char * argv[]){
                 printf("\nLine no, Lexeme, Token Name\n");
                 while(ti.state!=60){
                     //printf("Token %d: %s, %s, %d, %d\n", i+1, ti.name, ti.lexeme, ti.state, ti.lineNo);
-                    printf("%d: %s, %s\n", ti.lineNo, ti.lexeme, ti.name);
+                    //printf("%d: %s, %s\n", ti.lineNo, ti.lexeme, ti.name);
                     free(ti.lexeme);                        
                     i++;
                     ti = getToken();
@@ -137,6 +131,8 @@ int main(int argc, char * argv[]){
             total_CPU_time  =  (double) (end_time - start_time);
 
             total_CPU_time_in_seconds =   total_CPU_time / CLOCKS_PER_SEC;
+
+            printf("Total time in ticks is %lf, in seconds is %lf\n", total_CPU_time, total_CPU_time_in_seconds);
         }
     }
 }
